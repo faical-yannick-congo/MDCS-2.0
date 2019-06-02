@@ -207,10 +207,10 @@ LOGGING = {
     }
 }
 
-MONGO_USER = "mgi_user"
-MONGO_PASSWORD = "mgi_password"
-DB_NAME = "mgi"
-DB_SERVER = "localhost"
+MONGO_USER = os.environ['mongodb_username']
+MONGO_PASSWORD = os.environ['mongodb_password']
+DB_NAME = os.environ['mongodb_db']
+DB_SERVER = "mongo"
 MONGODB_URI = "mongodb://" + MONGO_USER + ":" + MONGO_PASSWORD + "@" + DB_SERVER + "/" + DB_NAME
 connect(DB_NAME, host=MONGODB_URI)
 
@@ -224,9 +224,9 @@ MANAGERS = [('manager', 'moderator@example.com')]
 USE_BACKGROUND_TASK = False
 # FIXME: set a redis password in production
 # REDIS_PASSWORD = 'redispass'
-# REDIS_URL = 'redis://:' + REDIS_PASSWORD + '@localhost:6379/0'
+# REDIS_URL = 'redis://:' + REDIS_PASSWORD + '@redis:6379/0'
 
-REDIS_URL = 'redis://localhost:6379/0'
+REDIS_URL = 'redis://redis:6379/0'
 BROKER_URL = REDIS_URL
 BROKER_TRANSPORT_OPTIONS = {
     'visibility_timeout': 3600,
